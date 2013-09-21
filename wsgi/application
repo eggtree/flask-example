@@ -8,7 +8,11 @@ PY_DIR = os.path.join(os.environ['OPENSHIFT_HOMEDIR'], "python")
 
 virtenv = PY_DIR + '/virtenv/'
 
-PY_CACHE = os.path.join(virtenv, 'lib', '2.6', 'site-packages')
+
+# python2.6 or python2.7 as appropriate
+PY_SUBDIR = ''.join(['python', '.'.join(map(str, sys.version_info[:2]))])
+
+PY_CACHE = os.path.join(virtenv, 'lib', PY_SUBDIR, 'site-packages')
 
 os.environ['PYTHON_EGG_CACHE'] = os.path.join(PY_CACHE)
 virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
